@@ -1,0 +1,44 @@
+/* Breakpoints */
+
+$bp-medium: 750px;
+$bp-large: 1000px;
+$bp-xlarge: 1190px;
+$bp-site-max-width: 1440px;
+$site-max-width: 2400px;
+
+/* Font Sizes */
+
+$base-font-size: 16px;
+$secondary-font-size: 14px;
+
+/* Base */
+
+$base-unit: 10px;
+
+/* Colors */
+
+$white: white;
+$color-dark: #2B2C43;
+$color-light-primary: #64c5be;
+$color-dark-primary: #12a79d;
+$color-light-etransfer: #edb726;
+$color-dark-etransfer: #cba504;
+$color-gray: #F2F2F2;
+$color-dark-gray: #8D99AF;
+
+/* Z-index */
+
+$z-index-1: 100;
+$z-index-2: 200;
+$z-index-3: 300;
+
+/* Transition and Animations */
+
+$anim-base: 0.3s;
+
+/* Images */
+
+$volume: url('../images/volume.svg');
+$volume-2: url('../images/volume-2.svg');
+
+/* Bars */
