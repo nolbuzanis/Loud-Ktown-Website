@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from './Header';
 import Landing from './Landing';
+import { connect } from 'react-redux';
 
 class App extends React.Component {
   render() {
@@ -13,4 +14,4 @@ class App extends React.Component {
   }
 }
 
-export default App;
+export default connect()(App);

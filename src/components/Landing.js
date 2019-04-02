@@ -1,7 +1,9 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import Bars from './Bars';
 import Contact from './Contact';
 import Footer from './Footer';
+import RentalForm from './RentalForm';
 
 import { animateScroll } from '../../node_modules/react-scrollchor/lib/helpers';
 
@@ -121,4 +123,4 @@ class Landing extends React.Component {
   }
 }
 
-export default Landing;
+export default connect()(Landing);
