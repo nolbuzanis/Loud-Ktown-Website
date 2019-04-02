@@ -35,14 +35,6 @@ class Landing extends React.Component {
               <h2 className='hero__text'>
                 Get <span className='hero__text--loud'>LOUD</span> Kingston.
               </h2>
-              {/* <h3 className='hero__secondary'>But how loud?</h3>
-              <ReactSlider
-                className="slider"
-                withBars
-                defaultValue={33}
-                barClassName="track"
-              />
-              */}
               <button className='btn btn--primary' onClick={this._scrollToRent}>
                 Rent Now
               </button>
