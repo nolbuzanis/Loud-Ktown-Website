@@ -46,7 +46,7 @@ class Landing extends React.Component {
           <Bars />
         </section>
         <section id='rent' className='dark center'>
-          <div className='section__header--big'>Rental Options</div>
+          <div className='section__header--big'>Rental Form</div>
           <RentalForm />
         </section>
         <section id='FAQ' className='light center'>

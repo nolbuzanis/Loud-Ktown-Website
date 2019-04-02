@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
+import { submitOrder } from '../actions/index';
 
 class RentalForm extends React.Component {
   showErrors = ({ touched, error }) => {
@@ -30,9 +31,9 @@ class RentalForm extends React.Component {
     );
   };
 
-  onSubmit(formValues) {
-    //validate(formValues);
-  }
+  onSubmit = formValues => {
+    this.props.submitOrder(formValues);
+  };
 
   render() {
     return (
@@ -52,6 +53,18 @@ class RentalForm extends React.Component {
           type='text'
           label='Email'
         />
+        <Field
+          name='phone'
+          component={this.renderInput}
+          type='text'
+          label='Phone'
+        />
+        <Field
+          name='address'
+          component={this.renderInput}
+          type='text'
+          label='Address'
+        />
         <button className='ui teal button'>Submit</button>
       </form>
     );
@@ -70,9 +83,18 @@ const validate = formValues => {
   ) {
     errors.email = 'Invalid email address';
   }
+  if (!formValues.phone) {
+    errors.phone = 'Required';
+  }
+  if (!formValues.address) {
+    errors.address = 'Required';
+  }
   return errors;
 };
 
 const rentalForm = reduxForm({ form: 'rent', validate })(RentalForm);
 
-export default connect()(rentalForm);
+export default connect(
+  null,
+  { submitOrder }
+)(rentalForm);
