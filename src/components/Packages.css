@@ -1,0 +1,54 @@
+.packageGrid {
+  display: flex !important;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.packageGrid .card {
+  box-sizing: border-box;
+  width: 270px;
+  background: white;
+  padding: 10px;
+  border-radius: 10px;
+  box-shadow: 2px 2px 4px;
+  margin-bottom: 20px;
+  font-family: 'effra', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif !important;
+  margin: 0 15px 20px;
+}
+
+/* .packageGrid .card:hover {
+  margin-left: 17px;
+  margin-right: 13px;
+  margin-top: -2px;
+  margin-bottom: 22px;
+  transition: all ease 0.3s;
+} */
+
+.header {
+  color: #363b3e;
+  font-size: 31.5px;
+  font-weight: 300;
+  line-height: 24px;
+  margin-bottom: 23px;
+}
+
+.list {
+  margin: 40px 0 !important;
+}
+.header.large {
+  color: #666c70;
+  font-weight: 300;
+  font-size: 34px;
+}
+
+.teal.button {
+  position: absolute;
+  left: 5%;
+  bottom: 25px;
+}
+.price {
+  position: absolute;
+  text-align: center;
+  left: 82px;
+  bottom: 80px;
+}

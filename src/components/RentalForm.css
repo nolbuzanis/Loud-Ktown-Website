@@ -1,7 +1,8 @@
 form {
-  width: 640px;
-  padding-left: 20px;
-  padding-right: 20px;
+  width: 500px;
+  padding: 15px;
+  border: 1px solid #64c5be;
+  border-radius: 6px;
 }
 form input {
   width: 100%;
@@ -776,4 +777,28 @@ form input {
 .react-datepicker__portal .react-datepicker__navigation--next--disabled:hover {
   border-left-color: #e6e6e6;
   cursor: default;
+}
+
+/* Input styling */
+
+.input-element {
+  border-width: 0;
+  border-bottom: 1px solid #64c5be;
+  background: none;
+  appearance: none;
+  font-size: 16px;
+  padding: 5px 0;
+  color: white;
+  font-weight: 400;
+  font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  letter-spacing: normal;
+}
+.input-element:focus {
+  outline: none;
+}
+
+label {
+  color: #9bc4c1;
+  font-size: 13px;
+  font-weight: 500;
 }

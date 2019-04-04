@@ -68,8 +68,12 @@ class RentalForm extends React.Component {
           formProps.meta.error && formProps.meta.touched ? 'error' : ''
         }`}
       >
-        <label style={{ color: 'white' }}>{formProps.label}</label>
-        <input {...formProps.input} autoComplete='off' />
+        <label>{formProps.label}</label>
+        <input
+          {...formProps.input}
+          autoComplete='off'
+          className='input-element input'
+        />
         {this.showErrors(formProps.meta)}
       </div>
     );
@@ -106,24 +110,13 @@ class RentalForm extends React.Component {
     }
 
     return (
-      <form
-        onSubmit={this.props.handleSubmit(this.onSubmit)}
-        className='ui form error'
-      >
-        <div className='two fields'>
-          <Field
-            name='firstname'
-            component={this.renderInput}
-            type='text'
-            label='First Name'
-          />
-          <Field
-            name='lastname'
-            component={this.renderInput}
-            type='text'
-            label='Last Name'
-          />
-        </div>
+      <form onSubmit={this.props.handleSubmit(this.onSubmit)}>
+        <Field
+          name='name'
+          component={this.renderInput}
+          type='text'
+          label='Name'
+        />
         <div className='two fields'>
           <div className='ten wide field'>
             <Field
@@ -150,7 +143,7 @@ class RentalForm extends React.Component {
         />
         <div className='two fields'>
           <div className='field'>
-            <label style={{ color: 'white' }}>Drop-off Date</label>
+            <label>Drop-off Date</label>
             <DatePicker
               selected={this.state.startDate}
               selectsStart
@@ -160,7 +153,7 @@ class RentalForm extends React.Component {
             />
           </div>
           <div className='field'>
-            <label style={{ color: 'white' }}>Pick-up Date</label>
+            <label>Pick-up Date</label>
             <DatePicker
               selected={this.state.endDate}
               selectsEnd
@@ -171,7 +164,7 @@ class RentalForm extends React.Component {
           </div>
         </div>
         <div className='field'>
-          <label style={{ color: 'white' }}>Select Speaker Package</label>
+          <label>Select Speaker Package</label>
           <Field
             name='packageOptions'
             component={this.renderSelect}
@@ -179,9 +172,7 @@ class RentalForm extends React.Component {
           />
         </div>
         <div>
-          <div className='ui header white center' style={{ color: 'white' }}>
-            Package Details
-          </div>
+          <div className='ui header white center'>Package Details</div>
           <div className='content'>{this.renderPackageDetails()}</div>
         </div>
         <div style={{ textAlign: 'center', paddingTop: '20px' }}>
@@ -194,11 +185,8 @@ class RentalForm extends React.Component {
 
 const validate = formValues => {
   const errors = {};
-  if (!formValues.firstname) {
-    errors.firstname = 'Required';
-  }
-  if (!formValues.lastname) {
-    errors.lastname = 'Required';
+  if (!formValues.name) {
+    errors.name = 'Required';
   }
   if (!formValues.email) {
     errors.email = 'Required';

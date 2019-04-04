@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import Bars from './Bars';
 import Contact from './Contact';
 import Footer from './Footer';
+import Packages from './Packages';
 import RentalForm from './RentalForm';
 
 import { animateScroll } from '../../node_modules/react-scrollchor/lib/helpers';
@@ -46,8 +47,9 @@ class Landing extends React.Component {
           <Bars />
         </section>
         <section id='rent' className='dark center'>
-          <div className='section__header--big'>Rental Form</div>
-          <RentalForm />
+          <div className='section__header--big'>Packages</div>
+          <Packages />
+          {/* <RentalForm /> */}
         </section>
         <section id='FAQ' className='light center'>
           <div className='section__header--big'>FAQs</div>
