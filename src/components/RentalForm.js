@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Field, reduxForm } from 'redux-form';
+import { Field, reduxForm, formValueSelector } from 'redux-form';
 import { submitOrder } from '../actions/index';
 import DatePicker from 'react-datepicker';
 import './RentalForm.css';
@@ -95,7 +95,16 @@ class RentalForm extends React.Component {
     this.props.submitOrder(formValues);
   };
 
+  renderPackageDetails = () => {
+    return <div>hi</div>;
+  };
+
   render() {
+    console.log();
+    if (this.props.test) {
+      console.log(this.props.test);
+    }
+
     return (
       <form
         onSubmit={this.props.handleSubmit(this.onSubmit)}
@@ -141,7 +150,7 @@ class RentalForm extends React.Component {
         />
         <div className='two fields'>
           <div className='field'>
-            <label style={{ color: 'white' }}>Dropoff date</label>
+            <label style={{ color: 'white' }}>Drop-off Date</label>
             <DatePicker
               selected={this.state.startDate}
               selectsStart
@@ -151,7 +160,7 @@ class RentalForm extends React.Component {
             />
           </div>
           <div className='field'>
-            <label style={{ color: 'white' }}>Pickup date</label>
+            <label style={{ color: 'white' }}>Pick-up Date</label>
             <DatePicker
               selected={this.state.endDate}
               selectsEnd
@@ -161,24 +170,22 @@ class RentalForm extends React.Component {
             />
           </div>
         </div>
-        <div className='two fields'>
-          <div className='ten wide field'>
-            <label style={{ color: 'white' }}>Select Package</label>
-            <Field
-              name='packageOptions'
-              component={this.renderSelect}
-              type='text'
-            />
-          </div>
-          <div className='six wide field'>
-            <label style={{ color: 'white', textAlign: 'center' }}>
-              Package price/day
-            </label>
-            {this.packagePrice}
-          </div>
+        <div className='field'>
+          <label style={{ color: 'white' }}>Select Speaker Package</label>
+          <Field
+            name='packageOptions'
+            component={this.renderSelect}
+            type='text'
+          />
         </div>
-        <div style={{ textAlign: 'center' }}>
-          <button className='ui teal button'>Submit</button>
+        <div>
+          <div className='ui header white center' style={{ color: 'white' }}>
+            Package Details
+          </div>
+          <div className='content'>{this.renderPackageDetails()}</div>
+        </div>
+        <div style={{ textAlign: 'center', paddingTop: '20px' }}>
+          <button className='ui teal large button'>Submit</button>
         </div>
       </form>
     );
@@ -202,6 +209,8 @@ const validate = formValues => {
   }
   if (!formValues.phone) {
     errors.phone = 'Required';
+  } else if (isNaN(Number(formValues.phone))) {
+    errors.phone = 'Must be a number';
   }
   if (!formValues.address) {
     errors.address = 'Required';
@@ -209,9 +218,17 @@ const validate = formValues => {
   return errors;
 };
 
+const mapStateToProps = (state, ownProps) => {
+  console.log(formValueSelector('rent')(state, 'phone'));
+  if (ownProps.values) {
+    console.log(ownProps);
+  }
+  return { test: state.form.rent };
+};
+
 const rentalForm = reduxForm({ form: 'rent', validate })(RentalForm);
 
 export default connect(
-  null,
+  mapStateToProps,
   { submitOrder }
 )(rentalForm);
