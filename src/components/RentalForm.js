@@ -103,13 +103,15 @@ class RentalForm extends React.Component {
   };
 
   render() {
-    console.log();
     if (this.props.test) {
       console.log(this.props.test);
     }
 
     return (
-      <form onSubmit={this.props.handleSubmit(this.onSubmit)}>
+      <form
+        onSubmit={this.props.handleSubmit(this.onSubmit)}
+        style={{ backgroundColor: 'black' }}
+      >
         <Field
           name='name'
           component={this.renderInput}

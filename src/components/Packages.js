@@ -10,6 +10,10 @@ class Packages extends React.Component {
     });
   };
 
+  submitPackage = service => {
+    this.props.selectPackage(service);
+  };
+
   renderPackageCard = packageInfo => {
     return packageInfo.map(service => {
       return (
@@ -38,7 +42,7 @@ class Packages extends React.Component {
                 margin: '0',
                 boxShadow: 'rgba(0,0,0,0.5) 1px 1px 3px'
               }}
-              onClick={() => selectPackage(service)}
+              onClick={() => this.submitPackage(service)}
             >
               Select
             </button>
