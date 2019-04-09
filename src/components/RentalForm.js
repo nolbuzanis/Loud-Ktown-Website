@@ -4,7 +4,6 @@ import { Field, reduxForm, formValueSelector } from 'redux-form';
 import { submitOrder } from '../actions/index';
 import DatePicker from 'react-datepicker';
 import './RentalForm.css';
-//import PackageOptions from './PackageOptions';
 
 class RentalForm extends React.Component {
   state = {
@@ -162,14 +161,6 @@ class RentalForm extends React.Component {
               onChange={this.handleChangeEnd}
             />
           </div>
-        </div>
-        <div className='field'>
-          <label>Select Speaker Package</label>
-          <Field
-            name='packageOptions'
-            component={this.renderSelect}
-            type='text'
-          />
         </div>
         <div>
           <div className='ui header white center'>Package Details</div>

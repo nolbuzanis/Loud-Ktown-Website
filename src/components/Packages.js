@@ -1,5 +1,7 @@
 import React from 'react';
 import './Packages.css';
+import { selectPackage } from '../actions/index';
+import { connect } from 'react-redux';
 
 class Packages extends React.Component {
   generateList = list => {
@@ -10,7 +12,6 @@ class Packages extends React.Component {
 
   renderPackageCard = packageInfo => {
     return packageInfo.map(service => {
-      console.log(service);
       return (
         <div className='card' style={{ position: 'relative' }}>
           <div
@@ -37,6 +38,7 @@ class Packages extends React.Component {
                 margin: '0',
                 boxShadow: 'rgba(0,0,0,0.5) 1px 1px 3px'
               }}
+              onClick={() => selectPackage(service)}
             >
               Select
             </button>
@@ -96,4 +98,7 @@ const packageInfo = [
   }
 ];
 
-export default Packages;
+export default connect(
+  null,
+  { selectPackage }
+)(Packages);
