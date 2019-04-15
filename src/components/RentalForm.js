@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { Field, reduxForm, formValueSelector } from 'redux-form';
+import { Field, reduxForm } from 'redux-form';
 import { submitOrder } from '../actions/index';
 import DatePicker from 'react-datepicker';
 import './RentalForm.css';
@@ -92,8 +92,8 @@ class RentalForm extends React.Component {
   onSubmit = formValues => {
     formValues = {
       ...formValues,
-      startDate: this.state.startDate,
-      endDate: this.state.endDate
+      startdate: this.state.startDate,
+      enddate: this.state.endDate
     };
     this.props.submitOrder(formValues);
   };
@@ -103,10 +103,6 @@ class RentalForm extends React.Component {
   };
 
   render() {
-    if (this.props.test) {
-      console.log(this.props.test);
-    }
-
     return (
       <form onSubmit={this.props.handleSubmit(this.onSubmit)}>
         <Field
@@ -196,17 +192,9 @@ const validate = formValues => {
   return errors;
 };
 
-const mapStateToProps = (state, ownProps) => {
-  console.log(formValueSelector('rent')(state, 'phone'));
-  if (ownProps.values) {
-    console.log(ownProps);
-  }
-  return { test: state.form.rent };
-};
-
 const rentalForm = reduxForm({ form: 'rent', validate })(RentalForm);
 
 export default connect(
-  mapStateToProps,
+  null,
   { submitOrder }
 )(rentalForm);

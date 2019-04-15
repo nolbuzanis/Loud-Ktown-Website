@@ -10,6 +10,7 @@ class Header extends React.Component {
     e.preventDefault();
     this.setState({ open: !this.state.open });
   };
+
   render() {
     return (
       <div className='container-padded'>
