@@ -13,7 +13,18 @@ class RentalForm extends React.Component {
 
   showErrors = ({ touched, error }) => {
     if (touched && error) {
-      return <div style={{ color: '#9f3a38' }}>{error}</div>;
+      return (
+        <div
+          style={{
+            color: '#9f3a38',
+            position: 'absolute',
+            fontSize: '12px',
+            marginTop: '5px'
+          }}
+        >
+          {error}
+        </div>
+      );
     }
     return null;
   };
@@ -62,12 +73,16 @@ class RentalForm extends React.Component {
 
   renderInput = formProps => {
     return (
-      <div
-        className={`field ${
-          formProps.meta.error && formProps.meta.touched ? 'error' : ''
-        }`}
-      >
-        <label>{formProps.label}</label>
+      <div className='input-container'>
+        <label
+          className={
+            formProps.meta.active || formProps.input.value !== ''
+              ? 'active'
+              : ''
+          }
+        >
+          {formProps.label}
+        </label>
         <input
           {...formProps.input}
           autoComplete='off'
@@ -75,17 +90,6 @@ class RentalForm extends React.Component {
         />
         {this.showErrors(formProps.meta)}
       </div>
-    );
-  };
-
-  renderSelect = formProps => {
-    return (
-      <select className='select-css' {...formProps.input}>
-        <option value='single'>Single - $40 per day</option>
-        <option value='double'>Double - $80 per day</option>
-        <option value='deluxe'>Deluxe - $90 per day</option>
-        <option value='conference'>Conference - $90 per day</option>
-      </select>
     );
   };
 
@@ -98,13 +102,13 @@ class RentalForm extends React.Component {
     this.props.submitOrder(formValues);
   };
 
-  renderPackageDetails = () => {
-    return <div>hi</div>;
-  };
-
   render() {
     return (
-      <form onSubmit={this.props.handleSubmit(this.onSubmit)}>
+      <form
+        onSubmit={this.props.handleSubmit(this.onSubmit)}
+        className='col s12'
+      >
+        <h1 className='form-title'>Place Your Order</h1>
         <Field
           name='name'
           component={this.renderInput}
@@ -135,8 +139,8 @@ class RentalForm extends React.Component {
           type='text'
           label='Address'
         />
-        <div className='two fields'>
-          <div className='field'>
+        <div className='dates-container'>
+          <div className='date-container'>
             <label>Drop-off Date</label>
             <DatePicker
               selected={this.state.startDate}
@@ -146,7 +150,7 @@ class RentalForm extends React.Component {
               onChange={this.handleChangeStart}
             />
           </div>
-          <div className='field'>
+          <div className='date-container'>
             <label>Pick-up Date</label>
             <DatePicker
               selected={this.state.endDate}
@@ -157,12 +161,14 @@ class RentalForm extends React.Component {
             />
           </div>
         </div>
-        <div>
-          <div className='ui header white center'>Package Details</div>
-          <div className='content'>{this.renderPackageDetails()}</div>
-        </div>
+        <Field
+          name='selectedPackage'
+          component={this.renderInput}
+          type='text'
+          label='Package'
+        />
         <div style={{ textAlign: 'center', paddingTop: '20px' }}>
-          <button className='ui teal large button'>Submit</button>
+          <button className='ui teal large button'>Checkout</button>
         </div>
       </form>
     );
