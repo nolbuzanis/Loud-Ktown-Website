@@ -5,6 +5,7 @@ import { submitOrder } from '../actions/index';
 import DatePicker from 'react-datepicker';
 import './RentalForm.css';
 import { Link } from 'react-router-dom';
+import Footer from './Footer';
 
 class RentalForm extends React.Component {
   state = {
@@ -156,65 +157,67 @@ class RentalForm extends React.Component {
 
   render() {
     return (
-      <form
-        onSubmit={this.props.handleSubmit(this.onSubmit)}
-        className='col s12'
-      >
-        <h1 className='form-title'>Place Your Order</h1>
-        <Field
-          name='name'
-          component={this.renderInput}
-          type='text'
-          label='Name'
-        />
-        <div className='two fields'>
-          <div className='ten wide field'>
-            <Field
-              name='email'
-              component={this.renderInput}
-              type='text'
-              label='Email'
-            />
+      <>
+        <form
+          onSubmit={this.props.handleSubmit(this.onSubmit)}
+          className='col s12'
+        >
+          <h1 className='form-title'>Place Your Order</h1>
+          <Field
+            name='name'
+            component={this.renderInput}
+            type='text'
+            label='Name'
+          />
+          <div className='two fields'>
+            <div className='ten wide field'>
+              <Field
+                name='email'
+                component={this.renderInput}
+                type='text'
+                label='Email'
+              />
+            </div>
+            <div className='six wide field'>
+              <Field
+                name='phone'
+                component={this.renderInput}
+                type='text'
+                label='Phone'
+              />
+            </div>
           </div>
-          <div className='six wide field'>
-            <Field
-              name='phone'
-              component={this.renderInput}
-              type='text'
-              label='Phone'
-            />
+          <Field
+            name='address'
+            component={this.renderInput}
+            type='text'
+            label='Address'
+          />
+          <div className='dates-container'>
+            <div className='date-container'>
+              <label>Drop-off Date</label>
+              <DatePicker
+                selected={this.state.startDate}
+                selectsStart
+                startDate={this.state.startDate}
+                endDate={this.state.endDate}
+                onChange={this.handleChangeStart}
+              />
+            </div>
+            <div className='date-container'>
+              <label>Pick-up Date</label>
+              <DatePicker
+                selected={this.state.endDate}
+                selectsEnd
+                startDate={this.state.startDate}
+                endDate={this.state.endDate}
+                onChange={this.handleChangeEnd}
+              />
+            </div>
           </div>
-        </div>
-        <Field
-          name='address'
-          component={this.renderInput}
-          type='text'
-          label='Address'
-        />
-        <div className='dates-container'>
-          <div className='date-container'>
-            <label>Drop-off Date</label>
-            <DatePicker
-              selected={this.state.startDate}
-              selectsStart
-              startDate={this.state.startDate}
-              endDate={this.state.endDate}
-              onChange={this.handleChangeStart}
-            />
-          </div>
-          <div className='date-container'>
-            <label>Pick-up Date</label>
-            <DatePicker
-              selected={this.state.endDate}
-              selectsEnd
-              startDate={this.state.startDate}
-              endDate={this.state.endDate}
-              onChange={this.handleChangeEnd}
-            />
-          </div>
-        </div>
 
-        <div className='package-details'>{this.renderPackageDetails()}</div>
+          <div className='package-details'>{this.renderPackageDetails()}</div>
+          {/*
         <div className='add-ons-section'>
           <h3>Add-ons</h3>
           <ul className='add-ons-list'>
@@ -243,11 +246,21 @@ class RentalForm extends React.Component {
               label='Wired Mic - $10/day'
             />
           </ul>
-        </div>
-        <div style={{ textAlign: 'center', paddingTop: '20px' }}>
-          <button className='ui teal large button'>Checkout</button>
-        </div>
-      </form>
+        </div> */}
+          <div
+            style={{
+              textAlign: 'center',
+              paddingTop: '20px',
+              paddingBottom: '50px'
+            }}
+          >
+            <button className='ui teal large button'>
+              Continue To Checkout
+            </button>
+          </div>
+        </form>
+        <Footer />
+      </>
     );
   }
 }
