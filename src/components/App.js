@@ -10,8 +10,8 @@ class App extends React.Component {
   render() {
     return (
       <>
-        <Header />
         <Router history={history}>
+          <Header />
           <Route path='/' exact component={Landing} />
           <Route path='/rent' exact component={Rent} />
         </Router>

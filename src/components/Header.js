@@ -1,6 +1,6 @@
 import React from 'react';
-import Scrollchor from 'react-scrollchor';
 import logo from '../img/loud-logo.png';
+import { HashLink as Link } from 'react-router-hash-link';
 
 class Header extends React.Component {
   state = {
@@ -18,9 +18,9 @@ class Header extends React.Component {
           {this.props.singlePage ? (
             <nav className={this.state.open ? 'nav--open' : 'nav--closed'}>
               <div className='nav__logo'>
-                <a href='/'>
+                <Link to='/'>
                   <img src={logo} alt='logo' />
-                </a>
+                </Link>
               </div>
             </nav>
           ) : (
@@ -35,13 +35,13 @@ class Header extends React.Component {
               </div>
               <ul className='nav__links'>
                 <li className='nav__link-item'>
-                  <Scrollchor to='rent'>Rent</Scrollchor>
+                  <Link to='/rent'>Order</Link>
                 </li>
                 <li className='nav__link-item'>
-                  <Scrollchor to='FAQ'>FAQ</Scrollchor>
+                  <Link to='/#FAQ'>FAQ</Link>
                 </li>
                 <li className='nav__link-item'>
-                  <Scrollchor to='contact'>Contact</Scrollchor>
+                  <Link to='/#contact'>Contact</Link>
                 </li>
               </ul>
             </nav>

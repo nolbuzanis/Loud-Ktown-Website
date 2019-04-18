@@ -25,6 +25,17 @@ body {
   margin: 0;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
+.rent-callto {
+  padding: 13px 20px !important;
+}
+.rent-callto:hover {
+  color: white !important;
+}
+
 /**
  * Add the correct display in IE 9-.
  */

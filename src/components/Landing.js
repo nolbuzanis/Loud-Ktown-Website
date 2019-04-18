@@ -4,6 +4,7 @@ import Bars from './Bars';
 import Contact from './Contact';
 import Footer from './Footer';
 import Packages from './Packages';
+import { HashLink as Link } from 'react-router-hash-link';
 
 import { animateScroll } from '../../node_modules/react-scrollchor/lib/helpers';
 
@@ -37,9 +38,9 @@ class Landing extends React.Component {
               <h2 className='hero__text'>
                 Get <span className='hero__text--loud'>LOUD</span> Kingston.
               </h2>
-              <button className='btn btn--primary' onClick={this._scrollToRent}>
+              <Link className='btn btn--primary rent-callto' to='/#rent'>
                 Rent Now
-              </button>
+              </Link>
             </div>
             <img style={{ height: '20em' }} src={speaker} alt='Speaker' />
           </div>
@@ -48,7 +49,6 @@ class Landing extends React.Component {
         <section id='rent' className='dark center'>
           <div className='section__header--big'>Packages</div>
           <Packages />
-          {/* <RentalForm /> */}
         </section>
         <section id='FAQ' className='light center'>
           <div className='section__header--big'>FAQs</div>
