@@ -7,13 +7,17 @@ export const submitOrder = formValues => async (dispatch, getState) => {
     ? 'No package selected'
     : getState().selected.package.title;
 
-  const response = await axios.post(
+  /*const response = await axios.post(
     'https://script.google.com/macros/s/AKfycbwC12_ZmZeKrzbBy5G_4uDSkzP0il33Ct0-nGYev68elnqSWig/exec',
     formValues
   );
   dispatch({
     type: 'SUBMIT_FORM',
     payload: response.data
+  });*/
+  dispatch({
+    type: 'SUBMIT_FORM',
+    payload: formValues
   });
 };
 

@@ -4,7 +4,6 @@ import Bars from './Bars';
 import Contact from './Contact';
 import Footer from './Footer';
 import Packages from './Packages';
-import RentalForm from './RentalForm';
 
 import { animateScroll } from '../../node_modules/react-scrollchor/lib/helpers';
 

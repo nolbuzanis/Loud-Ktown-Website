@@ -4,6 +4,7 @@ import { Field, reduxForm } from 'redux-form';
 import { submitOrder } from '../actions/index';
 import DatePicker from 'react-datepicker';
 import './RentalForm.css';
+import { Link } from 'react-router-dom';
 
 class RentalForm extends React.Component {
   state = {
@@ -93,6 +94,21 @@ class RentalForm extends React.Component {
     );
   };
 
+  renderRadioButtons = formProps => {
+    console.log(formProps);
+    return (
+      <>
+        <label style={{ whiteSpace: 'nowrap' }}>{formProps.label}</label>
+        <input
+          {...formProps}
+          onChange={e => {
+            console.log(e.target.value);
+          }}
+        />
+      </>
+    );
+  };
+
   onSubmit = formValues => {
     formValues = {
       ...formValues,
@@ -100,6 +116,42 @@ class RentalForm extends React.Component {
       enddate: this.state.endDate
     };
     this.props.submitOrder(formValues);
+  };
+
+  generateList = list => {
+    return list.map(item => {
+      return <div className='item'>{item}</div>;
+    });
+  };
+
+  renderPackageDetails = () => {
+    if (!this.props.selected.package) {
+      this.props.selected.package = defaultPackage;
+    }
+    return (
+      <>
+        <div>
+          <h3
+            style={{
+              display: 'inline',
+              marginRight: '7px',
+              paddingBottom: '10px'
+            }}
+            className='package-header'
+          >
+            {this.props.selected.package.title}
+          </h3>
+          <Link style={{ display: 'inline', color: '#64c5be' }} to='/#rent'>
+            change
+          </Link>
+        </div>
+        <div className='package-description'>
+          {this.props.selected.package.description}
+        </div>
+        <ul>{this.generateList(this.props.selected.package.includes)}</ul>
+        <span>Price/day: ${this.props.selected.package.price}</span>
+      </>
+    );
   };
 
   render() {
@@ -161,12 +213,37 @@ class RentalForm extends React.Component {
             />
           </div>
         </div>
-        <Field
-          name='selectedPackage'
-          component={this.renderInput}
-          type='text'
-          label='Package'
-        />
+
+        <div className='package-details'>{this.renderPackageDetails()}</div>
+        <div className='add-ons-section'>
+          <h3>Add-ons</h3>
+          <ul className='add-ons-list'>
+            <Field
+              name='extraspeaker'
+              component={this.renderRadioButtons}
+              type='checkbox'
+              label='Extra Speaker & Stand - $40/day'
+            />
+            <Field
+              name='partylights'
+              component={this.renderRadioButtons}
+              type='checkbox'
+              label='Party Lights - $10/day'
+            />
+            <Field
+              name='floodlights'
+              component={this.renderRadioButtons}
+              type='checkbox'
+              label='Flood Lights - $10/day'
+            />
+            <Field
+              name='mic'
+              component={this.renderRadioButtons}
+              type='checkbox'
+              label='Wired Mic - $10/day'
+            />
+          </ul>
+        </div>
         <div style={{ textAlign: 'center', paddingTop: '20px' }}>
           <button className='ui teal large button'>Checkout</button>
         </div>
@@ -198,9 +275,20 @@ const validate = formValues => {
   return errors;
 };
 
+const defaultPackage = {
+  title: 'Single',
+  description: 'A premium speaker perfect for getting your party going.',
+  includes: ['Speaker', 'Stand', 'Setup', 'Delivery & Pickup'],
+  price: 40
+};
+
 const rentalForm = reduxForm({ form: 'rent', validate })(RentalForm);
 
+const mapStateToProps = state => {
+  return { selected: state.selected };
+};
+
 export default connect(
-  null,
+  mapStateToProps,
   { submitOrder }
 )(rentalForm);
