@@ -96,7 +96,6 @@ class RentalForm extends React.Component {
   };
 
   renderRadioButtons = formProps => {
-    console.log(formProps);
     return (
       <>
         <label style={{ whiteSpace: 'nowrap' }}>{formProps.label}</label>
