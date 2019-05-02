@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { Router, Route } from 'react-router-dom';
 import Rent from './Rent';
 import history from '../history';
+import { StripeProvider } from 'react-stripe-elements';
 
 class App extends React.Component {
   render() {
@@ -13,7 +14,9 @@ class App extends React.Component {
         <Router history={history}>
           <Header />
           <Route path='/' exact component={Landing} />
-          <Route path='/rent' exact component={Rent} />
+          <StripeProvider apiKey='pk_test_TYooMQauvdEDq54NiTphI7jx'>
+            <Route path='/rent' exact component={Rent} />
+          </StripeProvider>
         </Router>
       </>
     );
