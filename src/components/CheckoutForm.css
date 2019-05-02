@@ -23,6 +23,7 @@
 .summary-list {
   list-style: none;
   text-align: left;
+  font-size: 16px;
 }
 
 .summary-list li {
