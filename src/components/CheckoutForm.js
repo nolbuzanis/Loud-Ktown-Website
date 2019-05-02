@@ -6,6 +6,17 @@ import { connect } from 'react-redux';
 import history from '../history';
 
 class CheckoutForm extends React.Component {
+  submit = async e => {
+    let { token } = await this.props.stripe.createToken({ name: 'Name' });
+    let response = await fetch('/charge', {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain' },
+      body: token.id
+    });
+
+    if (response.ok) console.log('Purchase Completed!');
+  };
+
   render() {
     if (!this.props.info) {
       history.push('/rent');
@@ -46,7 +57,9 @@ class CheckoutForm extends React.Component {
           </ul>
           <div>
             <CardElement />
-            <button onClick={() => console.log('Clicked!')}>Submit</button>
+            <button onClick={() => console.log(e => this.submit(e))}>
+              Submit
+            </button>
           </div>
         </div>
       </div>,
