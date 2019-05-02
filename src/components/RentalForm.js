@@ -110,10 +110,18 @@ class RentalForm extends React.Component {
   };
 
   onSubmit = formValues => {
+    const millisecondsInADay = 24 * 60 * 60 * 1000;
+    const daysRented = Math.ceil(
+      (this.state.endDate.getTime() - this.state.startDate.getTime()) /
+        millisecondsInADay
+    );
+
     formValues = {
       ...formValues,
       startdate: this.state.startDate,
-      enddate: this.state.endDate
+      enddate: this.state.endDate,
+      dayPrice: this.props.selected.package.price,
+      totalPrice: this.props.selected.package.price * daysRented
     };
     this.props.submitOrder(formValues);
   };

@@ -6,11 +6,6 @@ export const submitOrder = formValues => async (dispatch, getState) => {
   formValues.package = !getState().selected.package
     ? 'No package selected'
     : getState().selected.package.title;
-
-  formValues.price = !getState().selected.package
-    ? 0
-    : getState().selected.package.price;
-
   dispatch({
     type: 'SUBMIT_FORM',
     payload: formValues

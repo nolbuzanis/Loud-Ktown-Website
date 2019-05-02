@@ -39,8 +39,9 @@ class CheckoutForm extends React.Component {
               {' ' + this.props.info.enddate.toString().substring(0, 15)}
             </li>
             <li>Product:{' ' + this.props.info.package}</li>
+            <li>Price/day:{' $' + this.props.info.dayPrice}</li>
             <li>
-              <h3>Total:{' $' + this.props.info.price.toString()}</h3>
+              <h3>Total:{' $' + this.props.info.totalPrice.toString()}</h3>
             </li>
           </ul>
           <div>
