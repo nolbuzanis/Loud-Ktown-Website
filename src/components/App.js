@@ -7,6 +7,7 @@ import Rent from './Rent';
 import history from '../history';
 import { StripeProvider, Elements } from 'react-stripe-elements';
 import CheckoutForm from './CheckoutForm';
+import keys from '../apis/stripe';
 
 class App extends React.Component {
   render() {
@@ -16,7 +17,7 @@ class App extends React.Component {
           <Header />
           <Route path='/' exact component={Landing} />
           <Route path='/rent' exact component={Rent} />
-          <StripeProvider apiKey='pk_test_TYooMQauvdEDq54NiTphI7jx'>
+          <StripeProvider apiKey={keys.public}>
             <Elements>
               <Route path='/checkout' exact component={CheckoutForm} />
             </Elements>
