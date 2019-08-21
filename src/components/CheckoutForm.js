@@ -7,28 +7,14 @@ import history from '../history';
 
 class CheckoutForm extends React.Component {
   submit = async e => {
-    let complete = false;
-    e.preventDefault();
+    let { token } = await this.props.stripe.createToken({ name: 'Name' });
+    let response = await fetch('/charge', {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain' },
+      body: token.id
+    });
 
-    try {
-      let { token } = await this.props.stripe.createToken({ name: 'Name' });
-      let response = await fetch('/charge', {
-        method: 'POST',
-        headers: { 'Content-Type': 'text/plain' },
-        body: token.id
-      });
-
-      if (response.ok) {
-        console.log('Purchase Completed!');
-        complete = true;
-      } else throw new Error('Network response not ok.');
-    } catch (err) {
-      console.log('Error: ' + err);
-    }
-
-    if (complete) {
-      return <div>Payment sucessful!</div>;
-    }
+    if (response.ok) console.log('Purchase Completed!');
   };
 
   render() {
@@ -71,7 +57,9 @@ class CheckoutForm extends React.Component {
           </ul>
           <div>
             <CardElement />
-            <button onClick={e => this.submit(e)}>Submit</button>
+            <button onClick={() => console.log(e => this.submit(e))}>
+              Submit
+            </button>
           </div>
         </div>
       </div>,
