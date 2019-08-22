@@ -6,7 +6,7 @@ import DatePicker from 'react-datepicker';
 import './RentalForm.css';
 import { Link } from 'react-router-dom';
 import Footer from './Footer';
-import axios from 'axios';
+import googleSheets from '../apis/googleSheets';
 
 class RentalForm extends React.Component {
   state = {
@@ -125,10 +125,7 @@ class RentalForm extends React.Component {
       totalprice: this.props.selected.package.price * daysRented
     };
 
-    axios.post(
-      'https://script.google.com/macros/s/AKfycbwC12_ZmZeKrzbBy5G_4uDSkzP0il33Ct0-nGYev68elnqSWig/exec',
-      formValues
-    );
+    googleSheets.post('', formValues);
 
     this.props.submitOrder(formValues);
   };
