@@ -6,6 +6,7 @@ import DatePicker from 'react-datepicker';
 import './RentalForm.css';
 import { Link } from 'react-router-dom';
 import Footer from './Footer';
+import axios from 'axios';
 
 class RentalForm extends React.Component {
   state = {
@@ -120,9 +121,15 @@ class RentalForm extends React.Component {
       ...formValues,
       startdate: this.state.startDate,
       enddate: this.state.endDate,
-      dayPrice: this.props.selected.package.price,
-      totalPrice: this.props.selected.package.price * daysRented
+      dayprice: this.props.selected.package.price,
+      totalprice: this.props.selected.package.price * daysRented
     };
+
+    axios.post(
+      'https://script.google.com/macros/s/AKfycbwC12_ZmZeKrzbBy5G_4uDSkzP0il33Ct0-nGYev68elnqSWig/exec',
+      formValues
+    );
+
     this.props.submitOrder(formValues);
   };
 
