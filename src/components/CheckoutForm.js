@@ -71,9 +71,7 @@ class CheckoutForm extends React.Component {
           </ul>
           <div>
             <CardElement />
-            <button onClick={() => console.log(e => this.submit(e))}>
-              Submit
-            </button>
+            <button onClick={e => this.submit(e)}>Submit</button>
           </div>
         </div>
       </div>,
