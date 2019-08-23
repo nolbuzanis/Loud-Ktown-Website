@@ -125,7 +125,8 @@ class RentalForm extends React.Component {
       totalprice: this.props.selected.package.price * daysRented
     };
 
-    googleSheets.post('', formValues);
+    //googleSheets.post('', formValues);
+    // POST req to google sheets database to store form values
 
     this.props.submitOrder(formValues);
   };

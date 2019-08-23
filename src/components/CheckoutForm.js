@@ -6,21 +6,35 @@ import { connect } from 'react-redux';
 import history from '../history';
 
 class CheckoutForm extends React.Component {
+  state = {
+    status: ''
+  };
+
   submit = async e => {
+    e.preventDefault();
+
     let { token } = await this.props.stripe.createToken({ name: 'Name' });
-    let response = await fetch('/charge', {
+    let response = await fetch('/.netlify/functions/charge', {
       method: 'POST',
-      headers: { 'Content-Type': 'text/plain' },
-      body: token.id
+      body: JSON.stringify({
+        amount: this.props.info.totalprice * 100,
+        token: token.id
+      })
     });
 
-    if (response.ok) console.log('Purchase Completed!');
+    if (response.ok) {
+      this.setState({ status: 'complete' });
+      console.log('Purchase Completed!');
+    }
   };
 
   render() {
     if (!this.props.info) {
       history.push('/rent');
       return null;
+    }
+    if (this.state.status === 'complete') {
+      return <div className='CheckoutForm-complete'>Payment Sucessful!</div>;
     }
     return ReactDOM.createPortal(
       <div
