@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "axios": "^0.18.0",
+    "build-create-react-app-netlify": "^1.1.2",
     "dotenv": "^8.1.0",
     "http-proxy-middleware": "^0.19.1",
     "netlify-lambda": "^1.6.3",
@@ -21,6 +22,7 @@
     "redux-thunk": "^2.3.0"
   },
   "scripts": {
+    "build-netlify": "build-create-react-app-netlify",
     "start": "run-p start:**",
     "start:app": "react-scripts start",
     "start:lambda": "netlify-lambda serve src/lambda",
