@@ -11,7 +11,6 @@
 # production
 /build
 /lambda
-/src/apis
 
 # misc
 .DS_Store
@@ -25,4 +24,3 @@ yarn-debug.log*
 yarn-error.log*
 
 googleSheets.js
-stripe.js

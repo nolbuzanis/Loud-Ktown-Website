@@ -7,7 +7,7 @@ import './RentalForm.css';
 import { Link } from 'react-router-dom';
 import CheckoutForm from './CheckoutForm';
 import { StripeProvider, Elements } from 'react-stripe-elements';
-//import { publicKey } from '../apis/stripe';
+import { stripePublicKey } from '../apis/stripe';
 
 class RentalForm extends React.Component {
   state = {
@@ -263,7 +263,7 @@ class RentalForm extends React.Component {
             />
           </ul>
         </div> */}
-          <StripeProvider apiKey={process.env.STRIPE_PUBLIC}>
+          <StripeProvider apiKey={stripePublicKey}>
             <Elements>
               <CheckoutForm daysRented={this.state.daysRented} />
             </Elements>
