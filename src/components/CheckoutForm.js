@@ -51,7 +51,26 @@ class CheckoutForm extends React.Component {
 
   render() {
     if (this.state.status === 'complete') {
-      return <div className='CheckoutForm-complete'>Payment Sucessful!</div>;
+      return (
+        <>
+          <div
+            style={{
+              paddingTop: '40px',
+              paddingBottom: '20px',
+              fontSize: '28px',
+              textAlign: 'center'
+            }}
+            className='CheckoutForm-complete'
+          >
+            Payment Sucessful!
+          </div>
+          <div>
+            A reciept will be send to the email you provided above. We will be
+            in touch to coordinate drop-off and pick-up times. Thank you for
+            your purchase!
+          </div>
+        </>
+      );
     }
 
     return (
