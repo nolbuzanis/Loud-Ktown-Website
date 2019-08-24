@@ -1,5 +1,5 @@
-const { secretKey } = require('../apis/stripe');
-const stripe = require('stripe')(secretKey);
+//const { secretKey } = require('../apis/stripe');
+const stripe = require('stripe')(process.env.STRIPE_SECRET);
 
 export function handler(event, context, callback) {
   // Only allow POST req
