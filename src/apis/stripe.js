@@ -1,2 +1,2 @@
-export const stripePublicKey = process.env.STRIPE_PUBLIC;
-export const stripeSecretKey = process.env.STRIPE_SECRET;
+export const stripePublicKey = process.env.REACT_APP_STRIPE_PUBLIC;
+export const stripeSecretKey = process.env.REACT_APP_STRIPE_SECRET;
