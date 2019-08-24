@@ -263,7 +263,7 @@ class RentalForm extends React.Component {
             />
           </ul>
         </div> */}
-          <StripeProvider stripe={stripePublicKey}>
+          <StripeProvider apiKey={stripePublicKey || null}>
             <Elements>
               <CheckoutForm daysRented={this.state.daysRented} />
             </Elements>
