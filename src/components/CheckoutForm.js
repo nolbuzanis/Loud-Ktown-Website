@@ -10,6 +10,8 @@ class CheckoutForm extends React.Component {
   submit = async e => {
     e.preventDefault();
 
+    this.setState({ status: 'submitting' });
+
     try {
       let { token } = await this.props.stripe.createToken({ name: 'Name' });
       let response = await fetch('/.netlify/functions/charge', {
@@ -31,10 +33,27 @@ class CheckoutForm extends React.Component {
     }
   };
 
+  renderButton = () => {
+    if (this.state.status === 'submitting') {
+      return (
+        <button onClick={e => this.submit(e)} className='ui teal fluid button'>
+          Processing...
+        </button>
+      );
+    }
+
+    return (
+      <button onClick={e => this.submit(e)} className='ui teal fluid button'>
+        {`Pay: ${this.props.daysRented * this.props.package.price}.00`}
+      </button>
+    );
+  };
+
   render() {
     if (this.state.status === 'complete') {
       return <div className='CheckoutForm-complete'>Payment Sucessful!</div>;
     }
+
     return (
       <div>
         <h2 style={{ paddingTop: '40px', fontSize: '28px' }}>
@@ -50,12 +69,7 @@ class CheckoutForm extends React.Component {
               paddingBottom: '50px'
             }}
           >
-            <button
-              onClick={e => this.submit(e)}
-              className='ui teal fluid button'
-            >
-              Pay: ${this.props.daysRented * this.props.package.price}.00
-            </button>
+            {this.renderButton()}
           </div>
         </div>
       </div>
