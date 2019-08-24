@@ -5,13 +5,15 @@ import { submitOrder } from '../actions/index';
 import DatePicker from 'react-datepicker';
 import './RentalForm.css';
 import { Link } from 'react-router-dom';
-import Footer from './Footer';
-import googleSheets from '../apis/googleSheets';
+import CheckoutForm from './CheckoutForm';
+import { StripeProvider, Elements } from 'react-stripe-elements';
+import { publicKey } from '../apis/stripe';
 
 class RentalForm extends React.Component {
   state = {
     startDate: new Date(),
-    endDate: new Date()
+    endDate: new Date(),
+    daysRented: 1
   };
 
   showErrors = ({ touched, error }) => {
@@ -55,23 +57,38 @@ class RentalForm extends React.Component {
   }
 
   handleChangeStart = e => {
-    this.setState({
-      startDate: e
-    });
     if (!(e.getTime() < this.state.endDate.getTime())) {
       this.setState({
         endDate: this.getNextDate(e)
       });
     }
+    this.setState(
+      {
+        startDate: e
+      },
+      () => this.updatePackageDetails()
+    );
   };
 
   handleChangeEnd = e => {
-    this.setState({ endDate: e });
     if (e.getTime() < this.state.startDate.getTime()) {
       this.setState({
         startDate: this.getPreviousDate(e)
       });
     }
+
+    this.setState({ endDate: e }, () => this.updatePackageDetails());
+  };
+
+  updatePackageDetails = () => {
+    const millisecondsInADay = 24 * 60 * 60 * 1000;
+
+    this.setState({
+      daysRented: Math.ceil(
+        (this.state.endDate.getTime() - this.state.startDate.getTime()) /
+          millisecondsInADay
+      )
+    });
   };
 
   renderInput = formProps => {
@@ -110,26 +127,8 @@ class RentalForm extends React.Component {
     );
   };
 
-  onSubmit = formValues => {
-    const millisecondsInADay = 24 * 60 * 60 * 1000;
-    const daysRented = Math.ceil(
-      (this.state.endDate.getTime() - this.state.startDate.getTime()) /
-        millisecondsInADay
-    );
-
-    formValues = {
-      ...formValues,
-      startdate: this.state.startDate,
-      enddate: this.state.endDate,
-      dayprice: this.props.selected.package.price,
-      totalprice: this.props.selected.package.price * daysRented
-    };
-
-    //googleSheets.post('', formValues);
-    // POST req to google sheets database to store form values
-
-    this.props.submitOrder(formValues);
-  };
+  //googleSheets.post('', formValues);
+  // POST req to google sheets database to store form values
 
   generateList = list => {
     return list.map(item => {
@@ -144,7 +143,7 @@ class RentalForm extends React.Component {
     return (
       <>
         <div>
-          <h3
+          <h4
             style={{
               display: 'inline',
               marginRight: '7px',
@@ -153,7 +152,7 @@ class RentalForm extends React.Component {
             className='package-header'
           >
             {this.props.selected.package.title}
-          </h3>
+          </h4>
           <Link style={{ display: 'inline', color: '#64c5be' }} to='/#rent'>
             change
           </Link>
@@ -171,10 +170,15 @@ class RentalForm extends React.Component {
     return (
       <>
         <form
-          onSubmit={this.props.handleSubmit(this.onSubmit)}
+          //onSubmit={this.props.handleSubmit(this.onSubmit)}
           className='col s12'
         >
-          <h1 className='form-title'>Place Your Order</h1>
+          <h2
+            className='form-title'
+            style={{ textAlign: 'left', fontSize: '28px' }}
+          >
+            Place Your Order
+          </h2>
           <Field
             name='name'
             component={this.renderInput}
@@ -259,19 +263,12 @@ class RentalForm extends React.Component {
             />
           </ul>
         </div> */}
-          <div
-            style={{
-              textAlign: 'center',
-              paddingTop: '20px',
-              paddingBottom: '50px'
-            }}
-          >
-            <button className='ui teal large button'>
-              Continue To Checkout
-            </button>
-          </div>
+          <StripeProvider apiKey={publicKey}>
+            <Elements>
+              <CheckoutForm daysRented={this.state.daysRented} />
+            </Elements>
+          </StripeProvider>
         </form>
-        <Footer />
       </>
     );
   }
