@@ -1,7 +1,7 @@
 import React from 'react';
 import { CardElement, injectStripe } from 'react-stripe-elements';
 import { connect } from 'react-redux';
-import googleSheets from '../apis/googleSheets';
+import axios from 'axios';
 
 class CheckoutForm extends React.Component {
   state = {
@@ -26,7 +26,10 @@ class CheckoutForm extends React.Component {
       if (response.ok) {
         this.setState({ status: 'complete' });
         // Send info to google sheet
-        googleSheets.post('', this.props.customerInfo);
+        axios.post(
+          `${process.env.REACT_APP_GOOGLE_SHEET}`,
+          this.props.customerInfo
+        );
         console.log('Purchase Completed!');
       } else {
         throw new Error('Network response was not ok.');
