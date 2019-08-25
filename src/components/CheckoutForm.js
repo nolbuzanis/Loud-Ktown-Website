@@ -103,9 +103,15 @@ class CheckoutForm extends React.Component {
 }
 
 const mapStateToProps = state => {
+  if (state.form.rent) {
+    return {
+      package: state.selected.package,
+      customerInfo: state.form.rent.values
+    };
+  }
   return {
     package: state.selected.package,
-    customerInfo: state.form.rent.values
+    customerInfo: null
   };
 };
 

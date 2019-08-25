@@ -19,3 +19,11 @@ export const selectPackage = packageName => {
     payload: packageName
   };
 };
+/*
+export const getCustomerInfo = () => async (dispatch, getState) => {
+  const customerValues = getState().form.rent.values;
+  dispatch({
+    type: 'FETCH_INFO',
+    payload: customerValues
+  });
+};*/
