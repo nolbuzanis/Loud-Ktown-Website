@@ -168,10 +168,7 @@ class RentalForm extends React.Component {
   render() {
     return (
       <>
-        <form
-          onSubmit={this.props.handleSubmit(this.onSubmit)}
-          className='col s12'
-        >
+        <form className='col s12'>
           <h2
             className='form-title'
             style={{ textAlign: 'left', fontSize: '28px' }}
