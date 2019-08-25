@@ -7,7 +7,6 @@ import './RentalForm.css';
 import { Link } from 'react-router-dom';
 import CheckoutForm from './CheckoutForm';
 import { StripeProvider, Elements } from 'react-stripe-elements';
-import { stripePublicKey } from '../apis/stripe';
 
 class RentalForm extends React.Component {
   state = {
@@ -15,6 +14,8 @@ class RentalForm extends React.Component {
     endDate: new Date(),
     daysRented: 1
   };
+
+  sendValuesToGoogleSheet = () => {};
 
   showErrors = ({ touched, error }) => {
     if (touched && error) {
@@ -113,20 +114,6 @@ class RentalForm extends React.Component {
     );
   };
 
-  renderRadioButtons = formProps => {
-    return (
-      <>
-        <label style={{ whiteSpace: 'nowrap' }}>{formProps.label}</label>
-        <input
-          {...formProps}
-          onChange={e => {
-            console.log(e.target.value);
-          }}
-        />
-      </>
-    );
-  };
-
   //googleSheets.post('', formValues);
   // POST req to google sheets database to store form values
 
@@ -166,11 +153,23 @@ class RentalForm extends React.Component {
     );
   };
 
+  onSubmit = formValues => {
+    formValues = {
+      ...formValues,
+      startdate: this.state.startDate,
+      enddate: this.state.endDate,
+      dayPrice: this.props.selected.package.price,
+      totalPrice: this.props.selected.package.price * this.state.daysRented
+    };
+    this.props.submitOrder(formValues);
+    console.log(formValues);
+  };
+
   render() {
     return (
       <>
         <form
-          //onSubmit={this.props.handleSubmit(this.onSubmit)}
+          onSubmit={this.props.handleSubmit(this.onSubmit)}
           className='col s12'
         >
           <h2

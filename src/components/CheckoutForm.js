@@ -10,6 +10,9 @@ class CheckoutForm extends React.Component {
   submit = async e => {
     e.preventDefault();
 
+    // Callback function to parent component
+    this.props.sendToGoogleSheet();
+
     this.setState({ status: 'submitting' });
 
     try {

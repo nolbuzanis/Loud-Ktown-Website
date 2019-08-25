@@ -1,4 +1,3 @@
-const { stripeSecretKey } = require('../apis/stripe');
 const stripe = require('stripe')(`${process.env.REACT_APP_STRIPE_SECRET}`);
 
 export function handler(event, context, callback) {
