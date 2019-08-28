@@ -1,7 +1,7 @@
 LOUD KTown Website
 ==============
 
-An eCommerce platform for LOUD, a speaker rental service located in Kingston, ON. Uses reusable React components and Redux for the front end, the Stripe API for easy credit card payments, and pushes customer orders to a Google Sheets Spreadsheet using App Scripts + GoogleSheets API. Hosted on Netlify with lambda functions.
+An eCommerce platform for LOUD, a speaker rental service located in Kingston, ON. Uses reusable React components and Redux for the front end (and Semantic UI). The Stripe API is implemented for easy credit card payments, and customer orders are pushed to a Google Sheets Spreadsheet using App Scripts + GoogleSheets API. Hosted on Netlify with lambda functions.
 
 **[Visit LOUD](https://www.loudktown.com)**
 
