@@ -13,7 +13,7 @@ export default class Contact extends React.Component {
             </a>
           </div> :
           <div className="fb-messenger">
-            <a target="_blank" href="https://m.me/chrisalexjones" rel="noopener noreferrer">
+            <a target="_blank" href="https://m.me/LOUDKtown" rel="noopener noreferrer">
               <span>
                 Message Me
               </span>
