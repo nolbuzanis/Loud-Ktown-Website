@@ -2,6 +2,8 @@ import React from 'react';
 import './Packages.css';
 import { selectPackage } from '../actions/index';
 import { connect } from 'react-redux';
+import singleSpeaker from '../img/Single.jpg';
+import doubleSpeaker from '../img/Double.png';
 
 class Packages extends React.Component {
   generateList = list => {
@@ -17,35 +19,30 @@ class Packages extends React.Component {
   renderPackageCard = packageInfo => {
     return packageInfo.map(service => {
       return (
-        <div className='card' style={{ position: 'relative' }}>
+        <div
+          className='card'
+          style={{ position: 'relative' }}
+          onClick={() => this.submitPackage(service)}
+        >
           <div
-            className='content'
             style={{
-              paddingTop: '20px',
-              paddingBottom: '20px',
-              minHeight: '420px'
+              background: `url(${
+                service.title === 'Single' ? singleSpeaker : doubleSpeaker
+              }) center center no-repeat`,
+              backgroundSize: 'cover',
+              paddingBottom: '70%',
+              width: '100%'
             }}
-          >
+          ></div>
+          <div className='content'>
             <div className='large header'>{service.title}</div>
+            <div className='price'>${service.price}/day</div>
             <div className='description'>
               <p>{service.description}</p>
             </div>
             <div className='ui list' style={{ color: 'rgba(0,0,0,.75)' }}>
               {this.generateList(service.includes)}
             </div>
-            <div className='header price'>${service.price}/day</div>
-            <button
-              className='ui teal button'
-              style={{
-                width: '90%',
-                borderRadius: '2px',
-                margin: '0',
-                boxShadow: 'rgba(0,0,0,0.5) 1px 1px 3px'
-              }}
-              onClick={() => this.submitPackage(service)}
-            >
-              Select
-            </button>
           </div>
         </div>
       );
@@ -66,39 +63,16 @@ const packageInfo = [
     title: 'Single',
     description: 'A premium speaker perfect for getting your party going.',
     includes: ['Speaker', 'Stand', 'Setup', 'Delivery & Pickup'],
-    price: 40
+    price: 40,
+    img: 'Single.jpg'
   },
   {
     title: 'Double',
     description:
       'Dual speakers for stereo action or for maximum sound coverage.',
     includes: ['Speaker x2', 'Stand x2', 'Setup', 'Delivery & Pickup'],
-    price: 80
-  },
-  {
-    title: 'Deluxe',
-    description:
-      'Speakers, lasers and disco lights for a guaranteed good time.',
-    includes: [
-      'Speaker x2',
-      'Stand x2',
-      'Lasers & Disco Light',
-      'Bluetooth (optional)',
-      'Setup, Delivery & Pickup'
-    ],
-    price: 90
-  },
-  {
-    title: 'Conference',
-    description: 'The ideal setup for your conference or speaking event.',
-    includes: [
-      'Speaker x2',
-      'Stand x2',
-      'Setup',
-      'Microphone',
-      'Delivery & Pickup'
-    ],
-    price: 90
+    price: 80,
+    img: 'Double.jpg'
   }
 ];
 

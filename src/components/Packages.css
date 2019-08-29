@@ -6,14 +6,20 @@
 
 .packageGrid .card {
   box-sizing: border-box;
-  width: 270px;
+  width: 40% !important;
   background: white;
-  padding: 10px;
   border-radius: 10px;
   box-shadow: 2px 2px 4px;
-  margin-bottom: 20px;
+  padding: 10px;
   font-family: 'effra', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif !important;
-  margin: 0 15px 20px;
+  margin: 5% !important;
+  transition: all ease 0.3s;
+}
+
+.card:hover {
+  cursor: pointer;
+  width: 40.5% !important;
+  margin: 4.75% !important;
 }
 
 /* .packageGrid .card:hover {
@@ -26,8 +32,8 @@
 
 .header {
   color: #363b3e;
-  font-size: 31.5px;
-  font-weight: 300;
+  font-size: 31.5px !important;
+  font-weight: 300 !important;
   line-height: 24px;
   margin-bottom: 23px;
 }
@@ -47,8 +53,11 @@
   bottom: 25px;
 }
 .price {
-  position: absolute;
-  text-align: center;
-  left: 82px;
-  bottom: 80px;
+  font-weight: 300;
+  font-size: 18px;
+  padding-bottom: 10px;
+}
+
+.content {
+  margin: 0 auto;
 }
