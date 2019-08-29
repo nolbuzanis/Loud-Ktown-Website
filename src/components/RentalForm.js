@@ -205,6 +205,12 @@ class RentalForm extends React.Component {
             type='text'
             label='Address'
           />
+          <Field
+            name='ambassador'
+            component={this.renderInput}
+            type='text'
+            label='Hear about LOUD from an ambassador? Let us know their name.'
+          />
           <div className='dates-container'>
             <div className='date-container'>
               <label>Drop-off Date</label>
