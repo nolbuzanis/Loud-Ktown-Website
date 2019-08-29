@@ -15,7 +15,7 @@ export default class Contact extends React.Component {
           <div className="fb-messenger">
             <a target="_blank" href="https://m.me/LOUDKtown" rel="noopener noreferrer">
               <span>
-                Message Me
+                Message Us
               </span>
             </a>
           </div>
