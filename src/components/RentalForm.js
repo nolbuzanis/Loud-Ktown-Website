@@ -7,6 +7,9 @@ import './RentalForm.css';
 import { Link } from 'react-router-dom';
 import CheckoutForm from './CheckoutForm';
 import { StripeProvider, Elements } from 'react-stripe-elements';
+import micImage from '../img/Mic.jpg';
+import partyLightsImage from '../img/Lasers.jpg';
+import floodLightsImage from '../img/FloodLight.jpg';
 
 class RentalForm extends React.Component {
   state = {
@@ -130,25 +133,76 @@ class RentalForm extends React.Component {
     return (
       <>
         <div>
-          <h4
+          <div>
+            <h4
+              style={{
+                display: 'inline',
+                marginRight: '7px'
+              }}
+              className='package-header'
+            >
+              {this.props.selected.package.title}
+            </h4>
+            <Link style={{ display: 'inline', color: '#64c5be' }} to='/#rent'>
+              change
+            </Link>
+          </div>
+          <div style={{ marginTop: '10px' }} className='package-description'>
+            {this.props.selected.package.description}
+          </div>
+          <ul>{this.generateList(this.props.selected.package.includes)}</ul>
+          <span>
+            Price/day: <strong>${this.props.selected.package.price}</strong>
+          </span>
+        </div>
+        <h4
+          style={{
+            display: 'inline',
+            marginRight: '7px'
+          }}
+          className='package-header'
+        >
+          <div style={{ clear: 'both' }}></div>
+          Add-ons
+        </h4>
+        <div className='ui grid container'>
+          <div
+            className='add-ons'
             style={{
-              display: 'inline',
-              marginRight: '7px',
-              paddingBottom: '10px'
+              background: `url(${micImage}) center center no-repeat`,
+              backgroundSize: 'cover'
             }}
-            className='package-header'
           >
-            {this.props.selected.package.title}
-          </h4>
-          <Link style={{ display: 'inline', color: '#64c5be' }} to='/#rent'>
-            change
-          </Link>
+            <div className='addon-overlay'>
+              <h5>Mic</h5>
+              <span>+ $10/day</span>
+            </div>
+          </div>
+          <div
+            className='add-ons'
+            style={{
+              background: `url(${partyLightsImage}) center center no-repeat`,
+              backgroundSize: 'cover'
+            }}
+          >
+            <div className='addon-overlay'>
+              <h5>Party Lights</h5>
+              <span>+ $10/day</span>
+            </div>
+          </div>
+          <div
+            className='add-ons'
+            style={{
+              background: `url(${floodLightsImage}) center center no-repeat`,
+              backgroundSize: 'cover'
+            }}
+          >
+            <div className='addon-overlay'>
+              <h5>Flood Lights</h5>
+              <span>+ $10/day</span>
+            </div>
+          </div>
         </div>
-        <div className='package-description'>
-          {this.props.selected.package.description}
-        </div>
-        <ul>{this.generateList(this.props.selected.package.includes)}</ul>
-        <span>Price/day: ${this.props.selected.package.price}</span>
       </>
     );
   };
@@ -235,36 +289,7 @@ class RentalForm extends React.Component {
           </div>
 
           <div className='package-details'>{this.renderPackageDetails()}</div>
-          {/*
-        <div className='add-ons-section'>
-          <h3>Add-ons</h3>
-          <ul className='add-ons-list'>
-            <Field
-              name='extraspeaker'
-              component={this.renderRadioButtons}
-              type='checkbox'
-              label='Extra Speaker & Stand - $40/day'
-            />
-            <Field
-              name='partylights'
-              component={this.renderRadioButtons}
-              type='checkbox'
-              label='Party Lights - $10/day'
-            />
-            <Field
-              name='floodlights'
-              component={this.renderRadioButtons}
-              type='checkbox'
-              label='Flood Lights - $10/day'
-            />
-            <Field
-              name='mic'
-              component={this.renderRadioButtons}
-              type='checkbox'
-              label='Wired Mic - $10/day'
-            />
-          </ul>
-        </div> */}
+
           <StripeProvider apiKey={`${process.env.REACT_APP_STRIPE_PUBLIC}`}>
             <Elements>
               <CheckoutForm daysRented={this.state.daysRented} />
