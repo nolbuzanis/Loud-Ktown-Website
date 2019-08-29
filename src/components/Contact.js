@@ -8,7 +8,7 @@ export default class Contact extends React.Component {
           <div className="call-me">
             <a href="tel:16475323221">
               <span>
-                Call or Text Me
+                Call or Text Us
               </span>
             </a>
           </div> :
