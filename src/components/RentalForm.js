@@ -15,7 +15,10 @@ class RentalForm extends React.Component {
   state = {
     startDate: new Date(),
     endDate: new Date(),
-    daysRented: 1
+    daysRented: 1,
+    mic: false,
+    partylights: false,
+    floodlights: false
   };
 
   sendValuesToGoogleSheet = () => {};
@@ -117,6 +120,24 @@ class RentalForm extends React.Component {
     );
   };
 
+  onAddonClick = e => {
+    console.log(e.target);
+    var item = e.target;
+    item.classList.toggle('addon-active');
+    var overlay = item.children[0];
+    overlay.classList.toggle('overlay-active');
+
+    if (overlay.children[0].innerHTML === 'Mic') {
+      this.setState({ mic: true });
+    } else if (overlay.children[0].innerHTML === 'Party Lights') {
+      this.setState({ mic: true });
+    } else if (overlay.children[0].innerHTML === 'Flood Lights') {
+      this.setState({ mic: true });
+    } else {
+      console.log('Error: Add-on did not match records.');
+    }
+  };
+
   //googleSheets.post('', formValues);
   // POST req to google sheets database to store form values
 
@@ -172,6 +193,7 @@ class RentalForm extends React.Component {
               background: `url(${micImage}) center center no-repeat`,
               backgroundSize: 'cover'
             }}
+            onClick={e => this.onAddonClick(e)}
           >
             <div className='addon-overlay'>
               <h5>Mic</h5>
@@ -184,6 +206,7 @@ class RentalForm extends React.Component {
               background: `url(${partyLightsImage}) center center no-repeat`,
               backgroundSize: 'cover'
             }}
+            onClick={e => this.onAddonClick(e)}
           >
             <div className='addon-overlay'>
               <h5>Party Lights</h5>
@@ -196,6 +219,7 @@ class RentalForm extends React.Component {
               background: `url(${floodLightsImage}) center center no-repeat`,
               backgroundSize: 'cover'
             }}
+            onClick={e => this.onAddonClick(e)}
           >
             <div className='addon-overlay'>
               <h5>Flood Lights</h5>

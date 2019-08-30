@@ -821,7 +821,7 @@ form input {
 
 .add-ons {
   box-sizing: border-box;
-  width: 30%;
+  width: 29%;
   margin: 1.5%;
   padding: 15%;
   margin-top: 20px;
@@ -857,4 +857,13 @@ form input {
   text-align: center;
   padding-top: 30%;
   color: white;
+  pointer-events: none;
+}
+
+.addon-active {
+  border: 2px solid #009c94;
+}
+
+.overlay-active {
+  opacity: 1 !important;
 }

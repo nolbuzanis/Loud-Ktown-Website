@@ -7,10 +7,10 @@ export default () => {
   const year = new Date().getFullYear();
   return (
     <footer>
-      <div className='footer-menu'>
+      {/* <div className='footer-menu' style={{ height: '200px' }}>
         <ul
           style={{
-            display: 'inline-block'
+            display: 'inline'
           }}
         >
           <h3>Contact Us</h3>
@@ -27,7 +27,8 @@ export default () => {
         </ul>
         <ul
           style={{
-            display: 'inline-block'
+            display: 'inline',
+            height: '100%'
           }}
         >
           <h3>Support</h3>
@@ -37,7 +38,7 @@ export default () => {
             </Link>
           </li>
         </ul>
-      </div>
+      </div> */}
       <div>
         <span>© {year} LOUD</span>
         <span className='footer__right'>
