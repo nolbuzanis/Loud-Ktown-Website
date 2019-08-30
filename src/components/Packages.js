@@ -34,7 +34,7 @@ class Packages extends React.Component {
               width: '100%'
             }}
           ></div>
-          <div className='content'>
+          <div className='content' style={{ padding: '0px' }}>
             <div className='large header'>{service.title}</div>
             <div className='price'>${service.price}/day</div>
             <div className='description'>
