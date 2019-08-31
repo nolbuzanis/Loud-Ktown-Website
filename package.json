@@ -4,8 +4,9 @@
   "private": true,
   "dependencies": {
     "axios": "^0.18.0",
+    "babel-loader": "^8.0.5",
     "build-create-react-app-netlify": "^1.1.2",
-    "dotenv": "^8.1.0",
+    "env-cmd": "^10.0.1",
     "http-proxy-middleware": "^0.19.1",
     "netlify-lambda": "^1.6.3",
     "react": "^16.8.6",
@@ -19,7 +20,8 @@
     "react-stripe-elements": "^3.0.0",
     "redux": "^4.0.1",
     "redux-form": "^8.1.0",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "webpack": "^4.28.3"
   },
   "scripts": {
     "build-netlify": "build-create-react-app-netlify",
@@ -42,6 +44,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "dotenv": "^8.1.0",
     "npm-run-all": "^4.1.5",
     "stripe": "^7.8.0"
   }

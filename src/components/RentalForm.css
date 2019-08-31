@@ -819,13 +819,51 @@ form input {
   padding-left: 20px;
 }
 
-.add-ons-list label {
+.add-ons {
+  box-sizing: border-box;
+  width: 29%;
+  margin: 1.5%;
+  padding: 15%;
+  margin-top: 20px;
+  border: 2px solid rgba(0, 0, 0, 0.5);
+  transition: all ease 0.5s;
+  border-radius: 4px;
+  cursor: pointer;
   position: relative;
-  left: 20px;
-  top: 20px;
-  font-size: 15px;
 }
+
+.add-ons:hover .addon-overlay {
+  transition: all ease 0.5s;
+  opacity: 1;
+}
+
+.add-ons:hover {
+  border: 2px solid rgba(0, 0, 0, 0.7);
+}
+
 .add-ons-section h3 {
   margin: 0;
   margin-top: 15px;
+}
+
+.addon-overlay {
+  opacity: 0;
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  text-align: center;
+  padding-top: 30%;
+  color: white;
+  pointer-events: none;
+}
+
+.addon-active {
+  border: 2px solid #009c94;
+}
+
+.overlay-active {
+  opacity: 1 !important;
 }
