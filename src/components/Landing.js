@@ -29,11 +29,6 @@ class Landing extends React.Component {
   };
 
   render() {
-    console.log('NODE_ENV:', process.env.NODE_ENV);
-    console.log('S_KEY:', process.env.REACT_APP_STRIPE_SECRET);
-    console.log('P_KEY:', process.env.REACT_APP_STRIPE_PUBLIC);
-    console.log('GSheets:', process.env.REACT_APP_GOOGLE_SHEETS);
-
     return (
       <div className='container'>
         <section className='hero center'>

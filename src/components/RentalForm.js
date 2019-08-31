@@ -334,6 +334,9 @@ class RentalForm extends React.Component {
                 addons={this.state.addons}
                 startDate={this.state.startDate}
                 endDate={this.state.endDate}
+                mic={this.state.mic}
+                plights={this.state.partylights}
+                flights={this.state.floodlights}
               />
             </Elements>
           </StripeProvider>

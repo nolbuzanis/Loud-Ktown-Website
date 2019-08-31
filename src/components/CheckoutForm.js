@@ -36,11 +36,14 @@ class CheckoutForm extends React.Component {
           data: {
             ...this.props.customerInfo,
             package: this.props.package.title,
-            startDate: this.props.startDate,
-            endDate: this.props.endDate,
-            totalPrice:
+            startdate: this.props.startDate,
+            enddate: this.props.endDate,
+            totalprice:
               (this.props.addons * 10 + this.props.package.price) *
-              this.state.daysRented
+              this.state.daysRented,
+            mic: this.props.mic,
+            partylights: this.props.plights,
+            floodlights: this.props.flights
           },
           headers: {
             'Content-Type': 'text/plain;charset=utf-8'
