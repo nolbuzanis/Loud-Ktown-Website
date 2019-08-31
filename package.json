@@ -4,6 +4,7 @@
   "private": true,
   "dependencies": {
     "axios": "^0.18.0",
+    "babel-loader": "^8.0.5",
     "build-create-react-app-netlify": "^1.1.2",
     "env-cmd": "^10.0.1",
     "http-proxy-middleware": "^0.19.1",
@@ -19,7 +20,8 @@
     "react-stripe-elements": "^3.0.0",
     "redux": "^4.0.1",
     "redux-form": "^8.1.0",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "webpack": "^4.28.3"
   },
   "scripts": {
     "build-netlify": "build-create-react-app-netlify",

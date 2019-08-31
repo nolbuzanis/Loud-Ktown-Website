@@ -19,8 +19,8 @@ class CheckoutForm extends React.Component {
         method: 'POST',
         body: JSON.stringify({
           amount:
-            (this.props.daysRented * this.props.package.price +
-              this.props.addons * 10) *
+            this.props.daysRented *
+            (this.props.addons * 10 + this.props.package.price) *
             100,
           token: token.id
         })
@@ -53,8 +53,8 @@ class CheckoutForm extends React.Component {
 
     return (
       <button onClick={e => this.submit(e)} className='ui teal fluid button'>
-        {`Pay: ${this.props.daysRented * this.props.package.price +
-          this.props.addons * 10}.00`}
+        {`Pay: ${this.props.daysRented *
+          (this.props.package.price + this.props.addons * 10)}.00`}
       </button>
     );
   };
