@@ -29,10 +29,16 @@ class CheckoutForm extends React.Component {
       if (response.ok) {
         this.setState({ status: 'complete' });
         // Send info to google sheet
-        axios.post(
-          `${process.env.REACT_APP_GOOGLE_SHEET}`,
-          this.props.customerInfo
-        );
+
+        axios({
+          method: 'post',
+          url: `${process.env.REACT_APP_GOOGLE_SHEET}`,
+          data: this.props.customerInfo,
+          headers: {
+            'Content-Type': 'text/plain;charset=utf-8'
+          }
+        });
+
         console.log('Purchase Completed!');
       } else {
         throw new Error('Network response was not ok.');
