@@ -1,7 +1,7 @@
 /* eslint-disable react/jsx-no-target-blank */
 
 import React from 'react';
-import { HashLink as Link } from 'react-router-hash-link';
+//import { HashLink as Link } from 'react-router-hash-link';
 
 export default () => {
   const year = new Date().getFullYear();

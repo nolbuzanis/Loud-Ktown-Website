@@ -18,7 +18,10 @@ class CheckoutForm extends React.Component {
       let response = await fetch('/.netlify/functions/charge', {
         method: 'POST',
         body: JSON.stringify({
-          amount: this.props.daysRented * this.props.package.price * 100,
+          amount:
+            (this.props.daysRented * this.props.package.price +
+              this.props.addons * 10) *
+            100,
           token: token.id
         })
       });
@@ -50,7 +53,8 @@ class CheckoutForm extends React.Component {
 
     return (
       <button onClick={e => this.submit(e)} className='ui teal fluid button'>
-        {`Pay: ${this.props.daysRented * this.props.package.price}.00`}
+        {`Pay: ${this.props.daysRented * this.props.package.price +
+          this.props.addons * 10}.00`}
       </button>
     );
   };

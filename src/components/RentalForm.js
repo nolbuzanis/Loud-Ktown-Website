@@ -18,7 +18,8 @@ class RentalForm extends React.Component {
     daysRented: 1,
     mic: false,
     partylights: false,
-    floodlights: false
+    floodlights: false,
+    addons: 0
   };
 
   sendValuesToGoogleSheet = () => {};
@@ -120,19 +121,35 @@ class RentalForm extends React.Component {
     );
   };
 
+  updateAddOnsNumber = () => {};
+
   onAddonClick = e => {
-    console.log(e.target);
     var item = e.target;
     item.classList.toggle('addon-active');
     var overlay = item.children[0];
     overlay.classList.toggle('overlay-active');
 
     if (overlay.children[0].innerHTML === 'Mic') {
-      this.setState({ mic: true });
+      if (!this.state.mic) {
+        this.setState({ mic: true, addons: this.state.addons + 1 });
+      } else {
+        this.setState({ mic: false, addons: this.state.addons - 1 });
+      }
     } else if (overlay.children[0].innerHTML === 'Party Lights') {
-      this.setState({ mic: true });
+      if (!this.state.partylights) {
+        this.setState({ partylights: true, addons: this.state.addons + 1 });
+      } else {
+        this.setState({
+          partylights: false,
+          addons: this.state.addons - 1
+        });
+      }
     } else if (overlay.children[0].innerHTML === 'Flood Lights') {
-      this.setState({ mic: true });
+      if (!this.state.floodlights) {
+        this.setState({ floodlights: true, addons: this.state.addons + 1 });
+      } else {
+        this.setState({ floodlights: false, addons: this.state.addons - 1 });
+      }
     } else {
       console.log('Error: Add-on did not match records.');
     }
@@ -316,7 +333,10 @@ class RentalForm extends React.Component {
 
           <StripeProvider apiKey={`${process.env.REACT_APP_STRIPE_PUBLIC}`}>
             <Elements>
-              <CheckoutForm daysRented={this.state.daysRented} />
+              <CheckoutForm
+                daysRented={this.state.daysRented}
+                addons={this.state.addons}
+              />
             </Elements>
           </StripeProvider>
         </form>
