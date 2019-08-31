@@ -4,7 +4,6 @@
   "private": true,
   "dependencies": {
     "axios": "^0.18.0",
-    "babel-loader": "^8.0.5",
     "build-create-react-app-netlify": "^1.1.2",
     "env-cmd": "^10.0.1",
     "http-proxy-middleware": "^0.19.1",
@@ -15,13 +14,12 @@
     "react-redux": "^6.0.1",
     "react-router-dom": "^5.0.0",
     "react-router-hash-link": "^1.2.1",
-    "react-scripts": "2.1.8",
+    "react-scripts": "3.1.1",
     "react-scrollchor": "^6.0.0",
     "react-stripe-elements": "^3.0.0",
     "redux": "^4.0.1",
     "redux-form": "^8.1.0",
-    "redux-thunk": "^2.3.0",
-    "webpack": "^4.28.3"
+    "redux-thunk": "^2.3.0"
   },
   "scripts": {
     "build-netlify": "build-create-react-app-netlify",
