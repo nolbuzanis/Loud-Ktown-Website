@@ -29,6 +29,14 @@ class CheckoutForm extends React.Component {
       if (response.ok) {
         this.setState({ status: 'complete' });
         // Send info to google sheet
+        console.log('Add-ons:', this.props.addons);
+        console.log('Package-price:', this.props.package.price);
+        console.log('Days rented: ', this.state.daysRented);
+        console.log(
+          'Total price: ',
+          (this.props.addons * 10 + this.props.package.price) *
+            this.state.daysRented
+        );
 
         axios({
           method: 'post',
