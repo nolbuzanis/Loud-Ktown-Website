@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { Router, Route } from 'react-router-dom';
 import Rent from './Rent';
 import history from '../history';
+import Faqs from './Faqs';
 
 class App extends React.Component {
   render() {
@@ -14,6 +15,7 @@ class App extends React.Component {
           <Header />
           <Route path='/' exact component={Landing} />
           <Route path='/rent' exact component={Rent} />
+          <Route path='/faqs' exact component={Faqs} />
         </Router>
       </>
     );

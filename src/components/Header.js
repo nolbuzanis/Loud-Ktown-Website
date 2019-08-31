@@ -38,7 +38,7 @@ class Header extends React.Component {
                   <Link to='/rent'>Order</Link>
                 </li>
                 <li className='nav__link-item'>
-                  <Link to='/#FAQ'>FAQ</Link>
+                  <Link to='/faqs'>FAQs</Link>
                 </li>
                 <li className='nav__link-item'>
                   <Link to='/#contact'>Contact</Link>
