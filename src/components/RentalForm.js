@@ -22,8 +22,6 @@ class RentalForm extends React.Component {
     addons: 0
   };
 
-  sendValuesToGoogleSheet = () => {};
-
   showErrors = ({ touched, error }) => {
     if (touched && error) {
       return (
@@ -120,8 +118,6 @@ class RentalForm extends React.Component {
       </div>
     );
   };
-
-  updateAddOnsNumber = () => {};
 
   onAddonClick = e => {
     var item = e.target;
@@ -336,6 +332,8 @@ class RentalForm extends React.Component {
               <CheckoutForm
                 daysRented={this.state.daysRented}
                 addons={this.state.addons}
+                startDate={this.state.startDate}
+                endDate={this.state.endDate}
               />
             </Elements>
           </StripeProvider>

@@ -33,7 +33,15 @@ class CheckoutForm extends React.Component {
         axios({
           method: 'post',
           url: `${process.env.REACT_APP_GOOGLE_SHEET}`,
-          data: this.props.customerInfo,
+          data: {
+            ...this.props.customerInfo,
+            package: this.props.package.title,
+            startDate: this.props.startDate,
+            endDate: this.props.endDate,
+            totalPrice:
+              (this.props.addons * 10 + this.props.package.price) *
+              this.state.daysRented
+          },
           headers: {
             'Content-Type': 'text/plain;charset=utf-8'
           }
