@@ -35,7 +35,7 @@ class CheckoutForm extends React.Component {
         console.log(
           'Total price: ',
           (this.props.addons * 10 + this.props.package.price) *
-            this.state.daysRented
+            this.props.daysRented
         );
 
         axios({
@@ -48,7 +48,7 @@ class CheckoutForm extends React.Component {
             enddate: this.props.endDate,
             totalprice:
               (this.props.addons * 10 + this.props.package.price) *
-              this.state.daysRented,
+              this.props.daysRented,
             mic: this.props.mic,
             partylights: this.props.plights,
             floodlights: this.props.flights
