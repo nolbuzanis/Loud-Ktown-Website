@@ -22,7 +22,8 @@ export function handler(event, context, callback) {
       amount: parseInt(data.amount),
       currency: 'CAD',
       description: 'LOUD Speaker Rentals',
-      source: data.token
+      source: data.token,
+      receipt_email: data.customerInfo.email
     })
     .then(({ status }) => {
       return callback(null, {

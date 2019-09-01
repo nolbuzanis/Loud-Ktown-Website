@@ -22,21 +22,14 @@ class CheckoutForm extends React.Component {
             this.props.daysRented *
             (this.props.addons * 10 + this.props.package.price) *
             100,
-          token: token.id
+          token: token.id,
+          customerInfo: this.props.customerInfo
         })
       });
 
       if (response.ok) {
         this.setState({ status: 'complete' });
         // Send info to google sheet
-        console.log('Add-ons:', this.props.addons);
-        console.log('Package-price:', this.props.package.price);
-        console.log('Days rented: ', this.state.daysRented);
-        console.log(
-          'Total price: ',
-          (this.props.addons * 10 + this.props.package.price) *
-            this.props.daysRented
-        );
 
         axios({
           method: 'post',
