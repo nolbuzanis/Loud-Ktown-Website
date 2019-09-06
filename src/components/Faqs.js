@@ -31,8 +31,8 @@ const faqs = () => {
       <div className='section__content'>
         If you're looking to really make some noise then feel free to contact me
         at{' '}
-        <a className='link' href='tel:16475323221'>
-          (647) 532-3221
+        <a className='link' href='tel:14168567563'>
+          (416) 856-7563
         </a>{' '}
         and we can work out a deal.
       </div>
